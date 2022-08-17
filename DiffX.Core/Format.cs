@@ -7,7 +7,5 @@
 /// </summary>
 public abstract class Format
 {
-    public Stream? stream { get; init; };
-
-
+    public Stream? stream { get; init; }
 }

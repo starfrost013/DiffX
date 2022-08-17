@@ -73,7 +73,7 @@ public class PortableExecutable
 
     private T? LoadDirectory<T>(DirectoryEntry entry) where T : class, IPeDirectory<T>
     {
-        if(OptionalHeader.DataDirectory?.ContainsKey(entry) ?? false)
+        if (OptionalHeader.DataDirectory?.ContainsKey(entry) ?? false)
         {
             var directory = OptionalHeader.DataDirectory[entry];
             var sections = from x in SectionHeaders
@@ -82,7 +82,13 @@ public class PortableExecutable
 
             if (sections.FirstOrDefault() is var section and not null)
             {
+                // directory.Size is needed to work with some weird Alpha AXP dlls?
                 var buffer = new byte[Math.Min(section.VirtualSize, section.SizeOfRawData)].AsSpan();
+
+                // this is a hack until i can figure out what is going on with some files such as NT3.51.889 AlphaAXP SECURITY.DLL
+                if (directory.Size > buffer.Length) buffer = new byte[directory.Size];
+                // end hack
+
                 stream.Position = section.PointerToRawData;
                 stream.Read(buffer);
 

@@ -78,7 +78,7 @@ public class PeFileHeader
             $"Number of Sections: {NumberOfSections}\n" +
             $"TimeDateStamp: {TimeDateStamp.ToString("yyyy-MM-dd HH:mm:ss")}\n" +
             $"Symbol Table Location: 0x{PointerToSymbolTable.ToString("X")}\n" +
-            $"Number of Symbols {NumberOfSymbols}\n" +
+            $"Number of Symbols: {NumberOfSymbols}\n" +
             $"Size of Optional Header: {SizeOfOptionalHeader}\n" +
             $"Characteristics: {Characteristics}\n";
     }

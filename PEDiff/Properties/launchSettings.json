@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PEDiff": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/SECURITY.DLL"
+    }
+  }
+}
