@@ -1,5 +1,11 @@
 namespace DiffX.Formats.PE;
 using System.Text;
+
+/// <summary>
+/// PortableExecutable
+/// 
+/// August 17, 2022
+/// </summary>
 public class PortableExecutable
 {
     Stream stream;
@@ -24,7 +30,7 @@ public class PortableExecutable
         {
             DosExecutableHeader = new(buffer[0..64]);
         }
-        catch(InvalidDataException)
+        catch (InvalidDataException)
         {
             // This is not a valid MZ header.
             stream.Position = 0;
