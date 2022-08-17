@@ -1,0 +1,11 @@
+Shell.efi is an EFI Shell using EFI Bytecode.
+NTLDR is the WinXP bootloader app.
+osloader.exe is the WInXP OSLoader.
+setupldr.exe is an NT NativeAPI app.
+user32.dll is a Windows Core OS (WCOS) binary from FactoryOS.
+joinproviderol.dll is a normal NT DLL (10.0.25179.1000) for AMD64.
+PBRUSH.EXE is an NT executable for MIPS R4000 from NT 3.51.889.
+RASAPI.DLL is an NT DLL for PowerPC from NT 3.51.889.
+SECURITY.DLL is an NT DLL for Alpha AXP from NT 3.51.889.
+
+

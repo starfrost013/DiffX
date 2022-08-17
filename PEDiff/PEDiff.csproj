@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,6 +7,52 @@
     <Nullable>enable</Nullable>
 	  <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TestFiles\joinproviderol.dll" />
+    <None Remove="TestFiles\note.txt" />
+    <None Remove="TestFiles\NTLDR" />
+    <None Remove="TestFiles\osloader.exe" />
+    <None Remove="TestFiles\PBRUSH.EXE" />
+    <None Remove="TestFiles\RASAPI32.DLL" />
+    <None Remove="TestFiles\SECURITY.DLL" />
+    <None Remove="TestFiles\setupldr.exe" />
+    <None Remove="TestFiles\Shell.efi" />
+    <None Remove="TestFiles\user32.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestFiles\joinproviderol.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\note.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\NTLDR">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\osloader.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\PBRUSH.EXE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\RASAPI32.DLL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\SECURITY.DLL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\setupldr.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\Shell.efi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFiles\user32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DiffX.Formats.PE\DiffX.Formats.PE.csproj" />
