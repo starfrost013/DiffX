@@ -37,25 +37,25 @@ public class ApiSetSection
         HashOffset = BinaryPrimitives.ReadInt32LittleEndian(bytes[20..24]);
         HashFactor = BinaryPrimitives.ReadInt32LittleEndian(bytes[24..28]);
 
-        for(var i = 0; i < Count; i++)
+        for (var apiSetId = 0; apiSetId < Count; apiSetId++)
         {
-            var offset = HashOffset + (i * 8);
+            var offset = HashOffset + (apiSetId * 8);
             var hash = BinaryPrimitives.ReadInt32LittleEndian(bytes[offset..]);
             var value = BinaryPrimitives.ReadInt32LittleEndian(bytes[(offset + 4)..]);
 
             _hashes.Add(hash, value);
         }
 
-        for(var i = 0; i < Count; i++)
+        for (var apiSetId = 0; apiSetId < Count; apiSetId++)
         {
-            var apiSetNamespace = new ApiSetSchemaNamespace(bytes[(EntryOffset + i * 24)..]);
+            var apiSetNamespace = new ApiSetSchemaNamespace(bytes[(EntryOffset + apiSetId * 24)..]);
 
             var name = Encoding.Unicode.GetString(bytes[apiSetNamespace.NameOffset..(apiSetNamespace.NameOffset+apiSetNamespace.NameLength)]);
             Values.Add(name, new());
 
-            for(var j = 0; j < apiSetNamespace.ValueCount; j++)
+            for (var apiSetValueId = 0; apiSetValueId < apiSetNamespace.ValueCount; apiSetValueId++)
             {
-                var apiSetValue = new ApiSetSchemaValue(bytes[(apiSetNamespace.ValueOffset + j * 20)..]);
+                var apiSetValue = new ApiSetSchemaValue(bytes[(apiSetNamespace.ValueOffset + apiSetValueId * 20)..]);
                 var value = Encoding.Unicode.GetString(bytes[apiSetValue.ValueOffset..(apiSetValue.ValueOffset+apiSetValue.ValueLength)]);
 
                 Values[name].Add(value);
