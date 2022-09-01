@@ -16,5 +16,6 @@ else
     Console.WriteLine(pe.FileHeader.ToString());
     if (pe.ImportDirectory != null) Console.WriteLine(pe.ImportDirectory.ToString());
     if (pe.ExportDirectory != null) Console.WriteLine(pe.ExportDirectory.ToString());
+    if (pe.ResourceDirectory != null) Console.WriteLine(pe.ResourceDirectory.ToString());
 }
 #endregion

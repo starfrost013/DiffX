@@ -2,6 +2,9 @@ using System.Buffers.Binary;
 
 namespace DiffX.Formats.PE;
 
+/// <summary>
+/// Defines a PE import directory for a single file.
+/// </summary>
 public class PeImportDirectory : IPeDirectory<PeImportDirectory>
 {
     public int OriginalFirstThunk { get; }
@@ -14,11 +17,17 @@ public class PeImportDirectory : IPeDirectory<PeImportDirectory>
     public int Name { get; }
     public int FirstThunk { get; }
 
+    /// <summary>
+    /// Dictionary for PE Imports.
+    /// Key = module
+    /// </summary>
+    public Dictionary<string, (string FunctionName, int Ordinal, int Hint, bool Delayed)> Imports { get; set; }
+    
     public PeImportDirectory(PortableExecutable pe, ReadOnlySpan<byte> bytes)
     {
         OriginalFirstThunk = BinaryPrimitives.ReadInt32LittleEndian(bytes[0..4]);
         uint timeDateStamp = BinaryPrimitives.ReadUInt32LittleEndian(bytes[4..8]);
-        TimeDateStamp = new DateTime(1970, 1, 1, 1, 1, 1).AddSeconds(timeDateStamp);
+        TimeDateStamp = DateTime.UnixEpoch.AddSeconds(timeDateStamp);
         ForwarderChain = BinaryPrimitives.ReadInt32LittleEndian(bytes[8..12]);
         Name = BinaryPrimitives.ReadInt32LittleEndian(bytes[12..16]);
         FirstThunk = BinaryPrimitives.ReadInt32LittleEndian(bytes[16..20]);

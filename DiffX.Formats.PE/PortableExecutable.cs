@@ -4,6 +4,8 @@ using System.Text;
 /// <summary>
 /// PortableExecutable
 /// 
+/// Defines the main class for PEs.
+/// 
 /// August 17, 2022
 /// </summary>
 public class PortableExecutable
@@ -14,6 +16,10 @@ public class PortableExecutable
     public PeOptionalHeader OptionalHeader { get; }
     public PeSectionHeader[] SectionHeaders { get; }
     public PeExportDirectory? ExportDirectory { get; }
+
+    /// <summary>
+    /// PE import directory. There is one for each imported file.
+    /// </summary>
     public PeImportDirectory? ImportDirectory { get; }
     public PeResourceDirectory? ResourceDirectory { get; }
 
@@ -59,7 +65,7 @@ public class PortableExecutable
 
         // Section headers
         SectionHeaders = new PeSectionHeader[FileHeader.NumberOfSections];
-        for(var i = 0; i < FileHeader.NumberOfSections; i++)
+        for (var i = 0; i < FileHeader.NumberOfSections; i++)
         {
             stream.Read(buffer[0..40]);
             SectionHeaders[i] = new(this, buffer[0..40]);

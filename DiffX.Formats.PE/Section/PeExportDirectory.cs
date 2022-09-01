@@ -30,7 +30,7 @@ public class PeExportDirectory : IPeDirectory<PeExportDirectory>
 
         Characteristics = BinaryPrimitives.ReadInt32LittleEndian(bytes[0..4]);
         uint timeDateStamp = BinaryPrimitives.ReadUInt32LittleEndian(bytes[4..8]);
-        TimeDateStamp = new DateTime(1970, 1, 1, 1, 1, 1).AddSeconds(timeDateStamp);
+        TimeDateStamp = DateTime.UnixEpoch.AddSeconds(timeDateStamp);
         MajorVersion = BinaryPrimitives.ReadInt16LittleEndian(bytes[8..10]);
         MinorVersion = BinaryPrimitives.ReadInt16LittleEndian(bytes[10..12]);
         Name = BinaryPrimitives.ReadInt32LittleEndian(bytes[12..16]);

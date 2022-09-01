@@ -2,7 +2,7 @@
   "profiles": {
     "PEDiff": {
       "commandName": "Project",
-      "commandLineArgs": "TestFiles/SECURITY.DLL"
+      "commandLineArgs": "TestFiles/twinui.dll"
     }
   }
 }

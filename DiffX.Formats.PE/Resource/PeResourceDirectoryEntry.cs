@@ -17,7 +17,7 @@ public abstract class PeResourceDirectoryEntry
     public int OffsetToData => (int)(offset & ~IMAGE_RESOURCE_DATA_IS_DIRECTORY);
 
     public PeResourceDirectory? Directory { get; }
-    public PeResourceDataEntry? DataEntry { get; }
+    public PeResourceMetadataEntry? DataEntry { get; }
 
     public PeResourceDirectoryEntry(ReadOnlySpan<byte> bytes, int entryOffset)
     {
@@ -30,7 +30,7 @@ public abstract class PeResourceDirectoryEntry
         }
         else
         {
-            DataEntry = new PeResourceDataEntry(bytes, OffsetToData);
+            DataEntry = new PeResourceMetadataEntry(bytes, OffsetToData);
         }
     }
 }
@@ -59,18 +59,27 @@ public class PeResourceDirectoryIdEntry : PeResourceDirectoryEntry
     }
 }
 
-public class PeResourceDataEntry
+public class PeResourceMetadataEntry
 {
     public int OffsetToData { get; }
     public int Size { get; }
     public int CodePage { get; }
     public int Reserved { get; }
 
-    public PeResourceDataEntry(ReadOnlySpan<byte> bytes, int offset)
+    public PeResourceMetadataEntry(ReadOnlySpan<byte> bytes, int offset)
     {
         OffsetToData = BinaryPrimitives.ReadInt32LittleEndian(bytes[offset..(offset += 4)]);
         Size = BinaryPrimitives.ReadInt32LittleEndian(bytes[offset..(offset += 4)]);
         CodePage = BinaryPrimitives.ReadInt32LittleEndian(bytes[offset..(offset += 4)]);
         Reserved = BinaryPrimitives.ReadInt32LittleEndian(bytes[offset..(offset += 4)]);
+    }
+
+    public override string ToString()
+    {
+        return $"Data Entry: \n" +
+            $"Offset to data: {OffsetToData}\n" +
+            $"Size: {Size}\n" +
+            $"Codepage: {CodePage}\n" +
+            $"Reserved: {Reserved}\n";
     }
 }
